@@ -30,34 +30,50 @@ def open_json(subdir,file_name):
     
 def serparate_two_users_message(data):
     
+    data = open_json("D:\Portable\Git reps\Project Facebook","message_1.json")
+    
     msg1 = []
     msg2 = []
     
-    user = data['messages'][i]['sender_name']
-    name = ""
-    data['messages'][i]['sender_name'] == sender_name 
-    
-    for i in range(0,len(data['messages'])):
+    user_one = data['messages'][0]['sender_name']
+    previous_sender = ""
+
+    for i in range(len(data['messages'])-1,0,-1):
         current_sender = data['messages'][i]['sender_name']
-        if data['messages'][i]['type'] == 'Generic' and data['messages'][i].get('content','A') != 'A': 
+        if data['messages'][i]['type'] == 'Generic' and data['messages'][i].get('content','Mark') != 'Mark': 
             content = data['messages'][i]['content']
-            if user == current_sender:                   
-                if current_sender != name:
+            if user_one == current_sender:                   
+                if current_sender != previous_sender:
                     msg1.append([content])
                 else :
-                    msg1[-1].append(data['messages'][i]['content'])
+                    msg1[-1].append(content)
             else:
-                if current_sender != name:
-                    msg2.append([data['messages'][i]['content']])
+                if current_sender != previous_sender:
+                    msg2.append([content])
                 else :
-                    msg2[-1].append(data['messages'][i]['content'])
+                    msg2[-1].append(content)
         else:
-            if name == current_sender:
-                msg2.append([😶])
+            if previous_sender == current_sender:
+                msg2.append([' :) '])
             else:
-                msg1.append([😶])
-        name = data['messages'][i]['sender_name'] 
+                msg1.append([' :) '])
+        previous_sender = current_sender
         
     return (msg1,msg2)    
+
+# Checking bangla word using unicode range
+
+def is_bangla_word(word):
+    for i in word:
+        if 'ঀ' <= i <= '৿':
+            return True
+    return False
+        
+
+
+
+
+
+
 
 
