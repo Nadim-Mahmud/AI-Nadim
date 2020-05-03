@@ -52,7 +52,9 @@ x = sorted(mp.items(), key = lambda kv:(kv[1], kv[0]),reverse = True)
 
 from wordmodel import WordModel as wd
 
-wd.count_associativity(user2,user1)
+wd.count_associativity(user1,user2)
+store = wd.count_associativity(user2,user1)
+
 
 
 
