@@ -30,8 +30,6 @@ def open_json(subdir,file_name):
     
 def serparate_two_users_message(data):
     
-    data = open_json("D:\Portable\Git reps\Project Facebook","message_1.json")
-    
     msg1 = []
     msg2 = []
     

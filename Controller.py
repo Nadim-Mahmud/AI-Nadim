@@ -15,6 +15,7 @@ data = dp.open_json("D:\Portable\Git reps\AI_Message\src", "avrodict.json")
 # Seperating usrs message int two lists
 
 user2,user1 = dp.serparate_two_users_message(data = dataset)
+"""
 
 #normalization
 
@@ -47,6 +48,12 @@ for i in range(0,len(user2)):
     
 x = sorted(mp.items(), key = lambda kv:(kv[1], kv[0]),reverse = True)
         
+"""
+
+from wordmodel import WordModel as wd
+
+wd.count_associativity(user2,user1)
+
 
 
 
