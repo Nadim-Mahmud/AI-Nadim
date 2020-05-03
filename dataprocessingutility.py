@@ -42,21 +42,18 @@ def serparate_two_users_message(data):
         current_sender = data['messages'][i]['sender_name']
         if data['messages'][i]['type'] == 'Generic' and data['messages'][i].get('content','Mark') != 'Mark': 
             content = data['messages'][i]['content']
-            if user_one == current_sender:                   
-                if current_sender != previous_sender:
-                    msg1.append([content])
-                else :
-                    msg1[-1].append(content)
-            else:
-                if current_sender != previous_sender:
-                    msg2.append([content])
-                else :
-                    msg2[-1].append(content)
         else:
-            if previous_sender == current_sender:
-                msg2.append([' :) '])
-            else:
-                msg1.append([' :) '])
+            content = ' :) '
+        if user_one == current_sender:                   
+            if current_sender != previous_sender:
+                msg1.append([content])
+            else :
+                msg1[-1].append(content)
+        else:
+            if current_sender != previous_sender:
+                msg2.append([content])
+            else :
+                msg2[-1].append(content)
         previous_sender = current_sender
         
     return (msg1,msg2)    
