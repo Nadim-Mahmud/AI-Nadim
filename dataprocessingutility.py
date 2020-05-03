@@ -63,9 +63,7 @@ def is_bangla_word(word):
         if 'ঀ' <= i <= '৿':
             return True
     return False
-        
-
-
+             
 
 
 

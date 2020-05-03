@@ -20,8 +20,7 @@ class WordModel:
     
     def count_associativity(incoming,response):
         
-        
-        """
+
         import dataprocessingutility as dp 
         # Loading data 
         dataset = dp.open_json("D:\Portable\Git reps\Project Facebook","message_1.json")        
@@ -29,28 +28,28 @@ class WordModel:
         incoming = user2
         response = user1
         related_words = {}  
-        cn=0"""
+        cn=0
         
         # iterating throw incoming message
         for i in range(0,len(incoming)):
             for j in range(0,len(incoming[i])):
-                tmp_incoming_words = incoming[i][j].split()
+                tmp_incoming_words = incoming[i][j].lower().split()
                 for k in range(0,len(tmp_incoming_words)):
                     # iterating throw response 
                     for l in range(0,len(response[i])):
-                        tmp_response_words = response[i][l].split()
+                        tmp_response_words = response[i][l].lower().split()
                         for m in tmp_response_words:
-                            if WordModel.related_words.get(tmp_incoming_words[k],'_nOtFound_') =='_nOtFound_': 
+                            if related_words.get(tmp_incoming_words[k],'_nOtFound_') =='_nOtFound_': 
                                 dictionary_initizer = {}
                                 dictionary_initizer[m] = 1
-                                WordModel.related_words[tmp_incoming_words[k]] = dictionary_initizer
+                                related_words[tmp_incoming_words[k]] = [dictionary_initizer]
                             else:
-                                if WordModel.related_words[tmp_incoming_words[k]].get(m,'_nOtFound_') =='_nOtFound_':
+                                if related_words[tmp_incoming_words[k]].get(m,'_nOtFound_') =='_nOtFound_':
                                     dictionary_initizer = {}
                                     dictionary_initizer[m] = 1
-                                    WordModel.related_words[tmp_incoming_words[k]] = dictionary_initizer
+                                    related_words[tmp_incoming_words[k]] = [dictionary_initizer]
                                 else:
-                                    WordModel.related_words[tmp_incoming_words[k]][m] += 1
+                                   related_words[tmp_incoming_words[k]][m] += 1
         return WordModel.related_words
 
 
