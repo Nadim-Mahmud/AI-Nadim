@@ -22,4 +22,4 @@ x = "ঊনচিল্লশ"
 for i in x:
     print(i)
 
-print((int('ল')  -int( 'ল')))
+print((ord('ল')  -ord( 'ন')))
