@@ -15,6 +15,7 @@ dataset = dp.open_json("D:\Portable\Git reps\Project Facebook","message_1.json")
 
 incoming,response = dp.serparate_two_users_message(data = dataset)
 # should be ignore paragraph
+# remove duplicate word from a message
 
 from wordmodel import WordModel as wd
 
@@ -24,7 +25,7 @@ stored = wd.count_associativity()
 
 #print(wd.response)
 
-print(wd.replay('মিলে না রে...', 10))
+print(wd.replay('ki', 10))
 
 x = wd.response
 

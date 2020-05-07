@@ -40,9 +40,6 @@ def serparate_two_users_message(data):
         current_sender = data['messages'][i]['sender_name']
         if data['messages'][i]['type'] == 'Generic' and data['messages'][i].get('content','Mark') != 'Mark': 
             content = data['messages'][i]['content']
-            #ignoring long message
-            if len(content) > 300:
-                continue
         else:
             content = ' :) '
         if user_one == current_sender:                   
