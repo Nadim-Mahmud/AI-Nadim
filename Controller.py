@@ -24,7 +24,8 @@ from wordmodel import WordModel as wd
 wd.fit(incoming,response,1)
 stored = wd.count_associativity()
 
-print(wd.replay('hi', 10))
+print(wd.replay('mara kha', 10)[0])
 
+x = wd.response
 
-
+y = (stored['ki'])

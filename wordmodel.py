@@ -65,8 +65,9 @@ class WordModel:
     def replay(message, factor = 10):
         
         connected_words = WordModel.connected_words
-        response = WordModel.response        
-        words = message.lower().split()
+        response = WordModel.response
+        words = set()        
+        words.update(message.lower().split())
         
         best_fit = -1
         max_connectivity_score = 0
@@ -75,18 +76,19 @@ class WordModel:
             tmp_score_count = 0
             for word in words:
                 for j in range(0,len(response[i])):
-                     tmp_sentance = response[i][j].lower().split()
-                     for response_words in tmp_sentance:
-                         try : 
-                             index = connected_words[word][0].index(response_words)
-                             tmp_score_count += connected_words[word][1][index]*factor
-                         except Exception as e:
-                             pass
+                    tmp_sentance = set()
+                    tmp_sentance.update(response[i][j].lower().split())
+                    for response_words in tmp_sentance:
+                        try : 
+                            index = connected_words[word][0].index(response_words)
+                            tmp_score_count += connected_words[word][1][index]*factor
+                        except Exception as e:
+                            pass
             if tmp_score_count > max_connectivity_score:
                 max_connectivity_score = tmp_score_count
                 best_fit = i
                 #print(str(max_connectivity_score) + '  ' + str(tmp_score_count) + '  ' + str(best_fit))
-        
+    
         ret = ' : )'
         if best_fit != -1:
             ret = response[best_fit]
