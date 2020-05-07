@@ -87,8 +87,6 @@ class WordModel:
                 best_fit = i
                 #print(str(max_connectivity_score) + '  ' + str(tmp_score_count) + '  ' + str(best_fit))
         
-        print(len(response))
-        print(best_fit)
         ret = ' : )'
         if best_fit != -1:
             ret = response[best_fit]

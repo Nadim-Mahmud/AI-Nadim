@@ -16,12 +16,11 @@ dataset = dp.open_json(directory,message_title)
 # Seperating usrs message int two lists
 
 incoming,response = dp.serparate_two_users_message(data = dataset)
-# should be ignore paragraph
-# remove duplicate word from a message
+
+
+# Fitting and using model
 
 from wordmodel import WordModel as wd
-
-
 wd.fit(incoming,response,1)
 stored = wd.count_associativity()
 
