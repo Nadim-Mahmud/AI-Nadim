@@ -8,8 +8,10 @@ Created on Sun May  3 00:11:14 2020
 import dataprocessingutility as dp
 
 # Loading data
+directory = "D:\Portable\Git reps\Project Facebook"
+message_title = "message_1.json"
 
-dataset = dp.open_json("D:\Portable\Git reps\Project Facebook","message_1.json")
+dataset = dp.open_json(directory,message_title)
 
 # Seperating usrs message int two lists
 
@@ -23,10 +25,7 @@ from wordmodel import WordModel as wd
 wd.fit(incoming,response,1)
 stored = wd.count_associativity()
 
-#print(wd.response)
+print(wd.replay('hi', 10))
 
-print(wd.replay('ki', 10))
-
-x = wd.response
 
 
