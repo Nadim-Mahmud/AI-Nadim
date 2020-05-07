@@ -17,9 +17,7 @@ incoming,response = dp.serparate_two_users_message(data = dataset)
 
 
 from wordmodel import WordModel as wd
+wd.fit(incoming,response,1)
+stored = wd.count_associativity()
 
-stored = wd.count_associativity(incoming,response)
-
-
-x = stored['ওকে']
 
