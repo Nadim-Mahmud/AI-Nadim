@@ -17,7 +17,11 @@ incoming,response = dp.serparate_two_users_message(data = dataset)
 
 
 from wordmodel import WordModel as wd
-wd.fit(incoming,response,1)
+wd.fit(incoming,response)
 stored = wd.count_associativity()
+
+#print(wd.response)
+
+print(wd.replay('hi', 10))
 
 

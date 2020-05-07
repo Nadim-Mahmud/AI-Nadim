@@ -62,28 +62,31 @@ class WordModel:
 
 
     # replaying by seltecting reseponse from response pool
-    def replay(message,factor):
+    def replay(message, factor = 10):
         
         connected_words = WordModel.connected_words
         response = WordModel.response        
         words = message.lower().split()
         
-        best_fit = 0
+        best_fit = -1
         max_connectivity_score = 0
         
         for i in range(0,len(response)):
             tmp_score_count = 0
             for word in words:
                 for j in range(0,len(response[i])):
-                    for response_words in response[i][j]:
-                        try : 
-                            index = connected_words[word][0].index(response_words)
-                            tmp_score_count += connected_words[word][1][index]*factor
-                        except Exception as e:
-                            pass
+                     tmp_sentance = response[i][j].lower().split()
+                     for response_words in tmp_sentance:
+                         try : 
+                             index = connected_words[word][0].index(response_words)
+                             tmp_score_count += connected_words[word][1][index]*factor
+                         except Exception as e:
+                             pass
             if tmp_score_count >= max_connectivity_score:
                 max_connectivity_score = tmp_score_count
                 best_fit = i
+        
+        
         
         return response[best_fit]
 
