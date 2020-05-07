@@ -13,22 +13,13 @@ Created on Sun May  3 19:21:03 2020
 
 class WordModel:
     
-    related_words = {}  
+    connected_words = {}
+    
     
     def __init__(self, type):
         self.typ = type    
     
     def count_associativity(incoming,response):
-        
-
-        import dataprocessingutility as dp 
-        # Loading data 
-        dataset = dp.open_json("D:\Portable\Git reps\Project Facebook","message_1.json")        
-        user2,user1 = dp.serparate_two_users_message(data = dataset)
-        incoming = user2
-        response = user1
-        related_words = {}  
-        cn=0
         
         # iterating throw incoming message
         for i in range(0,len(incoming)):
@@ -39,17 +30,17 @@ class WordModel:
                     for l in range(0,len(response[i])):
                         tmp_response_words = response[i][l].lower().split()
                         for m in tmp_response_words:
-                            if related_words.get(tmp_incoming_words[k],'_nOtFound_') =='_nOtFound_': 
-                                dictionary_initizer = {}
-                                dictionary_initizer[m] = 1
-                                related_words[tmp_incoming_words[k]] = [dictionary_initizer]
+                            if WordModel.connected_words.get(tmp_incoming_words[k],'_nOtFound_') =='_nOtFound_': 
+                                WordModel.connected_words[tmp_incoming_words[k]] = []
+                                WordModel.connected_words[tmp_incoming_words[k]].append([m])
+                                WordModel.connected_words[tmp_incoming_words[k]].append([1])
                             else:
-                                if related_words[tmp_incoming_words[k]].get(m,'_nOtFound_') =='_nOtFound_':
-                                    dictionary_initizer = {}
-                                    dictionary_initizer[m] = 1
-                                    related_words[tmp_incoming_words[k]] = [dictionary_initizer]
+                                if m not in WordModel.connected_words[tmp_incoming_words[k]][0]:
+                                    WordModel.connected_words[tmp_incoming_words[k]][0].append(m)
+                                    WordModel.connected_words[tmp_incoming_words[k]][1].append(1)
                                 else:
-                                   related_words[tmp_incoming_words[k]][m] += 1
+                                    index = WordModel.connected_words[tmp_incoming_words[k]][0].index(m)
+                                    WordModel.connected_words[tmp_incoming_words[k]][1][index] += 1
         return WordModel.related_words
 
 
